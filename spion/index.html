@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spy Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+    </style>
+    <script src="./script.js"></script>
+</head>
+
+<body>
+
+    <!-- Setup Screen -->
+    <div id="setup">
+        <h2>Spy Game Setup</h2>
+        <label>Number of Players:</label>
+        <input type="number" id="playerCount" min="3" max="20" value="4"><br><br>
+
+        <label>Number of Spies:</label>
+        <input type="number" id="spyCount" min="1" max="5" value="1"><br><br>
+
+        <label>Choose Category:</label>
+        <select id="category" onchange="toggleManualInput()">
+            <option value="Standorte">Standorte</option>
+            <option value="Objekte">Objekte</option>
+            <option value="Natur">Natur</option>
+            <option value="Tiere">Tiere</option>
+            <option value="Manuell">Manuelle Eingabe</option>
+        </select><br><br>
+
+        <div id="manualInput" class="hidden">
+            <label>Main Word:</label>
+            <input type="text" id="mainWord"><br><br>
+            <label>Spy Word:</label>
+            <input type="text" id="spyWord"><br><br>
+        </div>
+
+        <button onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Word Reveal Screen -->
+    <div id="game" class="hidden">
+        <h2>Pass the phone and tap to reveal your word</h2>
+        <button onclick="showWord()">Tap to Reveal</button>
+        <h3 id="wordDisplay" class="hidden"></h3>
+        <button id="nextPlayer" onclick="nextPlayer()" class="hidden">Next Player</button>
+    </div>
+
+</body>
+
+</html>
