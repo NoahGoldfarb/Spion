@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spy Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Setup Screen -->
+    <div id="setup">
+        <h2>Spy Game Setup</h2>
+        <label>Number of Players:</label>
+        <input type="number" id="playerCount" min="3" max="20" value="4"><br><br>
+
+        <label>Number of Spies:</label>
+        <input type="number" id="spyCount" min="1" max="5" value="1"><br><br>
+
+        <label>Choose Category:</label>
+        <select id="category" onchange="toggleManualInput()">
+            <option value="Standorte">Standorte</option>
+            <option value="Objekte">Objekte</option>
+            <option value="Natur">Natur</option>
+            <option value="Tiere">Tiere</option>
+            <option value="Manuell">Manuelle Eingabe</option>
+        </select><br><br>
+
+        <div id="manualInput" class="hidden">
+            <label>Main Word:</label>
+            <input type="text" id="mainWord"><br><br>
+            <label>Spy Word:</label>
+            <input type="text" id="spyWord"><br><br>
+        </div>
+
+        <button onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Word Reveal Screen -->
+    <div id="game" class="hidden">
+        <h2>Pass the phone and tap to reveal your word</h2>
+        <button onclick="showWord()">Tap to Reveal</button>
+        <h3 id="wordDisplay" class="hidden"></h3>
+        <button id="nextPlayer" onclick="nextPlayer()" class="hidden">Next Player</button>
+    </div>
+    <script>const categories = {
+            "Standorte": ["Flughafen", "Bahnhof", "Schule", "Krankenhaus", "Supermarkt"],
+            "Objekte": ["Tisch", "Stuhl", "Lampe", "Buch", "Schlüssel"],
+            "Natur": ["Berg", "Fluss", "Wald", "Wiese", "Meer"],
+            "Tiere": ["Hund", "Katze", "Pferd", "Kuh", "Schwein"]
+        };
+
+        let players = [];
+        let assignedWords = [];
+        let currentIndex = 0;
+
+        function toggleManualInput() {
+            const category = document.getElementById("category").value;
+            const manualInputDiv = document.getElementById("manualInput");
+            if (category === "Manuell") {
+                manualInputDiv.classList.remove("hidden");
+            } else {
+                manualInputDiv.classList.add("hidden");
+            }
+        }
+
+        function startGame() {
+            const playerCount = parseInt(document.getElementById("playerCount").value);
+            const spyCount = parseInt(document.getElementById("spyCount").value);
+            const category = document.getElementById("category").value;
+
+            if (spyCount >= playerCount) {
+                alert("Spies must be fewer than total players!");
+                return;
+            }
+
+            players = Array.from({ length: playerCount }, (_, i) => `Player ${i + 1}`);
+
+            let mainWord, spyWord;
+
+            if (category === "Manuell") {
+                mainWord = document.getElementById("mainWord").value;
+                spyWord = document.getElementById("spyWord").value;
+
+                if (!mainWord || !spyWord) {
+                    alert("Please enter both main and spy words!");
+                    return;
+                }
+            } else {
+                const words = categories[category];
+                mainWord = words[Math.floor(Math.random() * words.length)];
+                spyWord = words[Math.floor(Math.random() * words.length)];
+                while (spyWord === mainWord) {
+                    spyWord = words[Math.floor(Math.random() * words.length)];
+                }
+            }
+
+            assignedWords = Array(playerCount).fill(mainWord);
+            for (let i = 0; i < spyCount; i++) {
+                let randomIndex;
+                do {
+                    randomIndex = Math.floor(Math.random() * playerCount);
+                } while (assignedWords[randomIndex] !== mainWord);
+                assignedWords[randomIndex] = spyWord;
+            }
+
+            document.getElementById("setup").classList.add("hidden");
+            document.getElementById("game").classList.remove("hidden");
+
+            currentIndex = 0;
+            document.getElementById("wordDisplay").classList.add("hidden");
+            document.getElementById("nextPlayer").classList.add("hidden");
+        }
+
+        function showWord() {
+            document.getElementById("wordDisplay").innerText = assignedWords[currentIndex];
+            document.getElementById("wordDisplay").classList.remove("hidden");
+            document.getElementById("nextPlayer").classList.remove("hidden");
+        }
+
+        function nextPlayer() {
+            currentIndex++;
+            if (currentIndex >= players.length) {
+                alert("All players have seen their words. Start the game!");
+                location.reload(); // Reset game after last player
+            } else {
+                document.getElementById("wordDisplay").classList.add("hidden");
+                document.getElementById("nextPlayer").classList.add("hidden");
+            }
+        }</script>
+</body>
+
+</html>
