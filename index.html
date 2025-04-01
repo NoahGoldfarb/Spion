@@ -62,10 +62,56 @@
         <button id="nextPlayer" onclick="nextPlayer()" class="hidden">Next Player</button>
     </div>
     <script>const categories = {
-            "Standorte": ["Flughafen", "Bahnhof", "Schule", "Krankenhaus", "Supermarkt"],
-            "Objekte": ["Tisch", "Stuhl", "Lampe", "Buch", "Schlüssel"],
-            "Natur": ["Berg", "Fluss", "Wald", "Wiese", "Meer"],
-            "Tiere": ["Hund", "Katze", "Pferd", "Kuh", "Schwein"]
+            "Standorte": [
+                    "Haus", "Wohnung", "Garten", "Balkon", "Dachboden",
+                    "Keller", "Garage", "Schule", "Universität", "Büro",
+                    "Krankenhaus", "Arztpraxis", "Supermarkt", "Einkaufszentrum", "Restaurant",
+                    "Café", "Bäckerei", "Hotel", "Flughafen", "Bahnhof",
+                    "Bushaltestelle", "Tankstelle", "Park", "Spielplatz", "Zoo",
+                    "Museum", "Theater", "Kino", "Bibliothek", "Schwimmbad",
+                    "Sportplatz", "Stadion", "Strand", "Berg", "Wald",
+                    "See", "Fluss", "Insel", "Marktplatz", "Kirche",
+                    "Moschee", "Tempel", "Friedhof", "Rathaus", "Polizeistation",
+                    "Feuerwache", "Gefängnis", "Baustelle", "Fabrik", "Autobahn"
+                ],
+    
+            "Objekte": [
+                    "Tisch", "Stuhl", "Bett", "Lampe", "Schrank",
+                    "Regal", "Sofa", "Teppich", "Uhr", "Spiegel",
+                    "Fernseher", "Computer", "Laptop", "Handy", "Tablet",
+                    "Kamera", "Buch", "Heft", "Stift", "Lineal",
+                    "Schere", "Tasche", "Rucksack", "Brille", "Schlüssel",
+                    "Auto", "Fahrrad", "Roller", "Motorrad", "Flugzeug",
+                    "Zug", "Schiff", "Boot", "Ball", "Spielzeug",
+                    "Gitarre", "Klavier", "Mikrofon", "Kopfhörer", "Radio",
+                    "Fernbedienung", "Kühlschrank", "Herd", "Waschmaschine", "Mikrowelle",
+                    "Toaster", "Kaffeemaschine", "Glas", "Tasse", "Teller"
+                ],
+            
+            "Natur": [
+                    "Baum", "Blume", "Strauch", "Gras", "Moos",
+                    "Wald", "Dschungel", "Steppe", "Wüste", "Sumpf",
+                    "See", "Fluss", "Bach", "Ozean", "Meer",
+                    "Küste", "Insel", "Gebirge", "Hügel", "Tal",
+                    "Felsen", "Höhle", "Vulkan", "Gletscher", "Wasserfall",
+                    "Sonne", "Mond", "Sterne", "Wolken", "Regen",
+                    "Schnee", "Hagel", "Sturm", "Wind", "Nebel",
+                    "Tau", "Erde", "Sand", "Lehm", "Feld",
+                    "Wiese", "Weide", "Heide", "Klippe", "Riff",
+                    "Koralle", "Wurzel", "Ast", "Blatt",
+                    "Frucht", "Pilz"
+                ],
+            
+                    "Tiere":["Löwe", "Tiger", "Elefant", "Giraffe", "Nashorn",
+                    "Zebra", "Krokodil", "Känguru", "Koala", "Panda",
+                    "Pinguin", "Delfin", "Wal", "Hai", "Tintenfisch",
+                    "Seestern", "Krake", "Seehund", "Eisbär", "Fuchs",
+                    "Wolf", "Bär", "Reh", "Hirsch", "Dachs",
+                    "Waschbär", "Eichhörnchen", "Hase", "Maulwurf", "Igel",
+                    "Schildkröte", "Schlange", "Chamäleon", "Leguan", "Papagei",
+                    "Uhu", "Rabe", "Strauß", "Spinne", "Ameise",
+                    "Biene", "Marienkäfer", "Libelle", "Frosch", "Molch",
+                    "Karpfen", "Forelle", "Eidechse", "Otter", "Stachelschwein"]
         };
 
         let players = [];
